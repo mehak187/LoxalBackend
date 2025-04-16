@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins-black-webfont.woff2') format('woff2'),
+         url('../font/poppins-black-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins-bold-webfont.woff2') format('woff2'),
+         url('../font/poppins-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins-extrabold-webfont.woff2') format('woff2'),
+         url('../font/poppins-extrabold-webfont.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins-semibold-webfont.woff2') format('woff2'),
+         url('../font/poppins-semibold-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins-thin-webfont.woff2') format('woff2'),
+         url('../font/poppins-thin-webfont.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins-light-webfont.woff2') format('woff2'),
+         url('../font/poppins-light-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins-medium-webfont.woff2') format('woff2'),
+         url('../font/poppins-medium-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins-regular-webfont.woff2') format('woff2'),
+         url('../font/poppins-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'poppins';
+}
+
+:root{
+    --blue: #02A552;
+    --dark:#005329
+}
+
+.bg-blue {
+    background-color: var(--blue) !important;
+}
+
+.bg-dark {
+    background-color: var(--dark) !important;
+}
+
+.text-blue {
+    color: var(--dark);
+}
+
+.text-darkgreen {
+    color: var(--dark);
+}
+
+.bg-griiey {
+    background: #F7F7F7;
+}
+
+.border-blue {
+    border: 1px solid var(--blue);
+}
+
+.fw-extra-bold {
+    font-weight: 800;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+select:focus {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.ex-small {
+    font-size: 12px;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+.focus-none:focus {
+    box-shadow: none;
+    border: solid 1px #cdcdcd;
+    outline: none;
+}
+
+.nowrap {
+    text-wrap: nowrap !important;
+}
+
+.myshadow {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.opacity-hover:hover {
+    opacity: 0.8;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #DFE5E9;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+}
+
+.black2 {
+    color: #231F20;
+}
