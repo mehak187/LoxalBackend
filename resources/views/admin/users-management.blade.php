@@ -3,7 +3,7 @@
 
 <head>
     @include('admin.template.css')
-    <title>riders management</title>
+    <title>Users Management</title>
 </head>
 
 <body>
@@ -61,15 +61,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($users as $user)
                                 <tr class="align-middle">
                                     <td class="small text-black">
-                                        <img src="{{asset('img/profile.png')}}" alt="property-img"
-                                            class="user-img rounded-circle shadow" />
+                                        <img src="{{ $user['image'] ?? asset('img/dummy.jpeg') }}" 
+                                        alt="user-img" class="user-img rounded-circle shadow" style="width:45px; height:45px; object-fit:cover">
                                     </td>
-                                    <td class="small text-black">DJ</td>
-                                    <td class="small text-black text-nowrap">Robinson</td>
-                                    <td class="small text-black">+21 91 999 999</td>
-                                    <td class="small text-black">client@gmail.com</td>
+                                    <td class="small text-black">{{ $user['firstName'] }}</td>
+                                    <td class="small text-black text-nowrap">{{ $user['lastName'] }}</td>
+                                    <td class="small text-black">{{ $user['mobileNumber'] }}</td>
+                                    <td class="small text-black">{{ $user['email'] }}</td>
                                     <td class="small text-black">
                                         <div class="dropdown custom-toggle">
                                             <button type="button" class="btn border-0 bg-ngrey text-blue dropdown-toggle"
@@ -96,6 +97,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

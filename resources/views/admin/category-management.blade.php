@@ -40,18 +40,30 @@
                             <thead class="">
                                 <tr class="align-middle">
                                     <th class="small text-capitalize fw-medium text-nowrap">
+                                        Image
+                                    </th>
+                                    <th class="small text-capitalize fw-medium text-nowrap">
                                         Category Name
                                     </th>
                                     <th class="small text-capitalize fw-medium text-nowrap">
-                                        Subcategory Name
+                                       Status
                                     </th>
                                     <th class="small text-capitalize fw-medium text-nowrap">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($catgs as $catg)
                                 <tr class="align-middle">
-                                    <td class="small text-black">Home and Garden</td>
-                                    <td class="small text-black">Appliances</td>
+                                    <td class="small text-black">
+                                        @if (!empty($catg['image']))
+                                            <img src="{{ $catg['image'] }}" 
+                                            alt="user-img" class="user-img rounded-circle shadow" style="width:45px; height:45px; object-fit:cover">
+                                        @else
+                                            <span>N/A</span>
+                                        @endif
+                                    </td>
+                                    <td class="small text-black">{{ $catg['title'] }}</td>
+                                    <td class="small text-black">{{ $catg['status'] }}</td>
                                     <td class="small text-black">
                                         <div class="dropdown custom-toggle">
                                             <button type="button" class="btn border-0 bg-ngrey text-blue dropdown-toggle"
@@ -69,7 +81,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -1,7 +1,7 @@
 <nav class="navbar panel-nav py-1 py-lg-0 navbar-expand-lg">
     <div class="mycontainer d-flex justify-content-between flex-wrap align-items-center custom-padd">
         <a href="{{ route('admin.dashboard') }}" class="navbar-brand logo-panel">
-            <img src="{{asset('img/logo.png')}}" alt="logo" class="w-100 h-100">
+            <img src="{{asset('img/logo.jpg')}}" alt="logo" class="w-100 h-100" style="max-width: 50px">
         </a>
         <div class="d-flex align-items-center">
             <div class="d-flex me-2 d-lg-none justify-content-between align-items-center">
@@ -69,17 +69,32 @@
             </ul>
             
             <div class="d-none d-lg-flex justify-content-between align-items-center">
-                <a class="mb-0 text-decoration-none d-flex align-items-center me-2 ">
+                <a class="mb-0 text-decoration-none d-flex align-items-center">
                     <div class="d-none me-2 d-sm-flex d-lg-none d-xl-flex  flex-column align-items-end">
                         <h6 class="mb-0 fw-medium text-dark">Dj RobinSon</h6>
                         <span class="font-12 mb-0 text-secondary">
                             Admin
                         </span>
                     </div>
-                    <div class="border-blue rounded-circle p-1">
-                        <img src="{{asset('img/profile.png')}}" alt="profile" class="rounded-circle profile">
+                    <div class="dropdown">
+                        <div id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="d-flex me-2 align-items-center dropdown-toggle pointer">
+                            <div class="border-blue rounded-circle p-1" >
+                                <img src="{{ asset('img/profile.png') }}" alt="profile" class="rounded-circle profile">
+                            </div>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown">
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item focus-none text-danger bg-white border-0">
+                                        <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </a>
+            
                 <a href="{{ route('admin.notification') }}" class="text-decoration-none not-bg position-relative">
                     <span class="d-flex align-items-center position-relative">
                         <i class="fas fa-bell fs-5 not-icon text-black"></i>

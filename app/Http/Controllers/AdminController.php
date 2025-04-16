@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AdminController extends Controller
 {
@@ -10,7 +11,23 @@ class AdminController extends Controller
         return view('admin/add-new-user');
     }
     public function categoryManagement(){
-        return view('admin/category-management');
+        $token = session('user_token');
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'Session expired. Please log in again.');
+        }
+        $response = Http::withHeaders([
+            'auth-token' => $token,
+        ])->get('https://localx-be20c6c46c77.herokuapp.com/api/get_main_categories');
+
+        if ($response->successful()) {
+            $catgs = $response->json();
+            $catgsmain = $catgs['data'] ?? [];
+            return view('admin.category-management', [
+                'catgs' => $catgsmain,
+            ]);
+        } else {
+            return view('admin.category-management')->withErrors('Failed to fetch drivers.');
+        }
     }
     public function dashboard(){
         return view('admin/dashboard');
@@ -19,7 +36,23 @@ class AdminController extends Controller
         return view('admin/drivers-request-details');
     }
     public function itemsManagement(){
-        return view('admin/items-management');
+        $token = session('user_token');
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'Session expired. Please log in again.');
+        }
+        $response = Http::withHeaders([
+            'auth-token' => $token,
+        ])->get('https://localx-be20c6c46c77.herokuapp.com/api/getProductsForRent');
+
+        if ($response->successful()) {
+            $items = $response->json();
+            $itemsmain = $items['data'] ?? [];
+            return view('admin.items-management', [
+                'items' => $itemsmain,
+            ]);
+        } else {
+            return view('admin.items-management')->withErrors('Failed to fetch drivers.');
+        }
     }
     public function notification(){
         return view('admin/notifications');
@@ -40,10 +73,32 @@ class AdminController extends Controller
         return view('admin/user-details');
     }
     public function userManagement(){
-        return view('admin/users-management');
+        $token = session('user_token');
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'Session expired. Please log in again.');
+        }
+        $currentPage = request('page', 1);
+        $response = Http::withHeaders([
+            'auth-token' => $token,
+        ])->get('https://localx-be20c6c46c77.herokuapp.com/api/getAllUsers', [
+            'page' => $currentPage,
+            'limit' => 10,
+        ]);
+
+        if ($response->successful()) {
+            $users = $response->json();
+            $totalPages = $users['data']['totalPages'] ?? 1;
+            $users = $users['data']['users'] ?? [];
+
+            return view('admin.users-management', [
+                'users' => $users,
+                'currentPage' => $currentPage,
+                'totalPages' => $totalPages,
+            ]);
+        } else {
+            return view('admin.users-management')->withErrors('Failed to fetch drivers.');
+        }
     }
-    public function index(){
-        return view('index');
-    }
+ 
   
 }

@@ -65,30 +65,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle">
-                                    <td class="small text-black">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{asset('img/item.png')}}" alt="property-img"
-                                            class="user-img rounded-2 shadow me-3" />
-                                            <span>Item name here</span>
-                                        </div>
-                                    </td>
-                                    <td class="small text-black text-nowrap">6 Years</td>
-                                    <td class="small text-black">
-                                        $45,89.00
-                                    </td>
-                                    <td class="small text-black">
-                                        Always Available
-                                    </td>
-                                    <td class="small text-black">
-                                       <span class="status-green">
-                                        Booking
-                                       </span>
-                                    </td>
-                                    <td class="small text-black">
-                                        <a href="#" class="status-green">Detail</a>
-                                    </td>
-                                </tr>
+                                @foreach ($items as $item)
+                                    <tr class="align-middle">
+                                        <td class="small text-black">
+                                            <div class="d-flex align-items-center">
+                                                @if (!empty($item['media']) && is_array($item['media']))
+                                                <img src="{{ $item['media'][0] ?? '' }}" alt="user-img" class="user-img rounded-circle shadow"
+                                                    style="width:45px; height:45px; object-fit:cover">
+                                                @else
+                                                <span>N/A</span>
+                                                @endif
+                                                <span>{{ $item['title'] }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="small text-black text-nowrap">{{ $item['age'] }}</td>
+                                        <td class="small text-black">
+                                            {{ $item['price'] }}
+                                        </td>
+                                        <td class="small text-black">
+                                            {{ is_array($item['availability']) ? implode(', ', $item['availability']) : $item['availability'] }}
+                                        </td>
+                                        <td class="small text-black">
+                                            <span class="status-green">
+                                                Booking
+                                            </span>
+                                        </td>
+                                        <td class="small text-black">
+                                            <a href="#" class="status-green">Detail</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
