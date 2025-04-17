@@ -20,6 +20,8 @@ Route::group(['middleware' => ['CheckAdminAuth']], function () {
             Route::get('userDetails','userDetails')->name('admin.userDetails');
             Route::get('userManagement','userManagement')->name('admin.userManagement');
             Route::get('categoriesDetail/{id}','categoriesDetail')->name('admin.categoriesDetail');
+            Route::get('itemsDetail/{id}','itemsDetail')->name('admin.itemsDetail');
+
         });
     });
 });

@@ -103,7 +103,51 @@ class AdminController extends Controller
             return redirect()->back()->withErrors('Failed to fetch drivers. API Response: ' . $errorBody);
         }
     }
+    public function itemsDetail($id){
+        $token = session('user_token'); 
+        if (!$token) {
+            return redirect()->route('login')->withErrors('Session expired. Please log in again.');
+        }
+        $response = Http::withHeaders([
+            'auth-token' => $token, 
+        ])->get('https://localx-be20c6c46c77.herokuapp.com/api/getProductsForRent');
 
+        $response2 = Http::withHeaders([
+            'auth-token' => $token,
+        ])->get('https://localx-be20c6c46c77.herokuapp.com/api/getProductsForSale');
+
+        if ($response->successful() && $response2->successful()) {
+            $itemsrent = $response->json();
+            $allitemsrent = $itemsrent['data'] ?? [];
+            $itemRentDetail = collect($allitemsrent)->firstWhere('_id', $id);
+
+            $itemssale = $response->json();
+            $allitemssale = $itemssale['data'] ?? [];
+            $itemSaleDetail = collect($allitemssale)->firstWhere('_id', $id);
+
+            if ($itemRentDetail) {
+                return view('admin.items-detail', [
+                    'item' => $itemRentDetail,
+                ]);
+            } 
+            elseif ($itemSaleDetail) {
+                return view('admin.items-detail', [
+                    'item' => $itemSaleDetail,
+                ]);
+            }
+            else {
+                return redirect()->back()->withErrors('Category not found.');
+            }
+        } else {
+            $statusCode = $response->status();
+            $errorBody = $response->body();
+            logger('Get Categories API Error', [
+                'status' => $statusCode,
+                'response' => $errorBody,
+            ]);
+            return redirect()->back()->withErrors('Failed to fetch items. API Response: ' . $errorBody);
+        }
+    }
     public function notification(){
         return view('admin/notifications');
     }

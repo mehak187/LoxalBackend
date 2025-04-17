@@ -107,7 +107,7 @@
                                                             </span>
                                                         </td>
                                                         <td class="small text-black">
-                                                            <a href="#" class="status-green">Detail</a>
+                                                            <a href="{{ 'itemsDetail/' . $item['_id'] }}" class="status-green">Detail</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -171,7 +171,7 @@
                                                             </span>
                                                         </td>
                                                         <td class="small text-black">
-                                                            <a href="#" class="status-green">Detail</a>
+                                                            <a href="{{ 'itemsDetail/' . $itemssale['_id'] }}" class="status-green">Detail</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

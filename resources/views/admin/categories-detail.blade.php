@@ -3,7 +3,7 @@
 
 <head>
     @include('admin.template.css')
-    <title>rental log details</title>
+    <title>category details</title>
 </head>
 
 <body>
