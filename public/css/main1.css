@@ -317,7 +317,10 @@
     background: #DFEFE6;
 }
 
-
+.custom-tabs .nav-item .active {
+    background: #000 !important;
+    color: #fff !important;
+}
 @media screen and (max-width:1400px) {
     .mycontainer {
         padding: 0 50px;

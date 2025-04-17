@@ -44,16 +44,66 @@ class AdminController extends Controller
             'auth-token' => $token,
         ])->get('https://localx-be20c6c46c77.herokuapp.com/api/getProductsForRent');
 
-        if ($response->successful()) {
+        $response2 = Http::withHeaders([
+            'auth-token' => $token,
+        ])->get('https://localx-be20c6c46c77.herokuapp.com/api/getProductsForSale');
+
+
+        if ($response->successful() && $response2->successful()) {
             $items = $response->json();
             $itemsmain = $items['data'] ?? [];
+
+            $itemssale = $response2->json();
+            $itemssalemain = $itemssale['data'] ?? [];
             return view('admin.items-management', [
                 'items' => $itemsmain,
+                'itemssales' => $itemssalemain,
             ]);
         } else {
             return view('admin.items-management')->withErrors('Failed to fetch drivers.');
         }
     }
+    public function categoriesDetail($id){
+        $token = session('user_token'); 
+
+        if (!$token) {
+            return redirect()->route('login')->withErrors('Session expired. Please log in again.');
+        }
+        $response = Http::withHeaders([
+            'auth-token' => $token, 
+        ])->get('https://localx-be20c6c46c77.herokuapp.com/api/get_main_categories');
+
+        $response2 = Http::withHeaders([
+            'auth-token' => $token,
+        ])->get('https://localx-be20c6c46c77.herokuapp.com/api/get_sub_categories/' . $id);
+
+        if ($response->successful() && $response2->successful()) {
+            $catgs = $response->json();
+            $allcatgs = $catgs['data'] ?? [];
+            $catgDetail = collect($allcatgs)->firstWhere('_id', $id);
+
+            $subcatg = $response2->json();
+            $subcatgmain = $subcatg['data'] ?? [];
+            if ($catgDetail) {
+                
+                return view('admin.categories-detail', [
+                    'catg' => $catgDetail,
+                    'subcatgs' => $subcatgmain,
+                ]);
+            } else {
+                return redirect()->back()->withErrors('Category not found.');
+            }
+        } else {
+            $statusCode = $response->status();
+            $errorBody = $response->body();
+            logger('Get Categories API Error', [
+                'status' => $statusCode,
+                'response' => $errorBody,
+            ]);
+            return redirect()->back()->withErrors('Failed to fetch drivers. API Response: ' . $errorBody);
+        }
+    }
+
     public function notification(){
         return view('admin/notifications');
     }

@@ -19,6 +19,7 @@ Route::group(['middleware' => ['CheckAdminAuth']], function () {
             Route::get('saleLogDetails','saleLogDetails')->name('admin.saleLogDetails');
             Route::get('userDetails','userDetails')->name('admin.userDetails');
             Route::get('userManagement','userManagement')->name('admin.userManagement');
+            Route::get('categoriesDetail/{id}','categoriesDetail')->name('admin.categoriesDetail');
         });
     });
 });

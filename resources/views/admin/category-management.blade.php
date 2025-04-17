@@ -35,56 +35,66 @@
                         </div>
                        
                     </div>
-                    <div class="table-responsive default-table table-header-shadow mt-3">
-                        <table class="table">
-                            <thead class="">
-                                <tr class="align-middle">
-                                    <th class="small text-capitalize fw-medium text-nowrap">
-                                        Image
-                                    </th>
-                                    <th class="small text-capitalize fw-medium text-nowrap">
-                                        Category Name
-                                    </th>
-                                    <th class="small text-capitalize fw-medium text-nowrap">
-                                       Status
-                                    </th>
-                                    <th class="small text-capitalize fw-medium text-nowrap">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($catgs as $catg)
-                                <tr class="align-middle">
-                                    <td class="small text-black">
-                                        @if (!empty($catg['image']))
-                                            <img src="{{ $catg['image'] }}" 
-                                            alt="user-img" class="user-img rounded-circle shadow" style="width:45px; height:45px; object-fit:cover">
-                                        @else
-                                            <span>N/A</span>
-                                        @endif
-                                    </td>
-                                    <td class="small text-black">{{ $catg['title'] }}</td>
-                                    <td class="small text-black">{{ $catg['status'] }}</td>
-                                    <td class="small text-black">
-                                        <div class="dropdown custom-toggle">
-                                            <button type="button" class="btn border-0 bg-ngrey text-blue dropdown-toggle"
-                                                data-bs-toggle="dropdown">
-                                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                                            </button>
-                                            <ul class="dropdown-menu py-0 rounded-3">
-                                                <li><a class="dropdown-item d-flex align-items-center py-2"
-                                                    href="#"><img src="{{asset('img/edit.png')}}" alt="delete"
-                                                        class="icon me-2"><span>Edit</span></a></li>
-                                                <li><a class="dropdown-item d-flex align-items-center py-2"
-                                                        href="#"><img src="{{asset('img/delete.png')}}" alt="delete"
-                                                            class="icon me-2"><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    @if (count($catgs) > 0)
+                        <div class="table-responsive default-table table-header-shadow mt-3">
+                            <table class="table">
+                                <thead class="">
+                                    <tr class="align-middle">
+                                        <th class="small text-capitalize fw-medium text-nowrap">
+                                            Image
+                                        </th>
+                                        <th class="small text-capitalize fw-medium text-nowrap">
+                                            Category Name
+                                        </th>
+                                        <th class="small text-capitalize fw-medium text-nowrap">
+                                        Status
+                                        </th>
+                                        <th class="small text-capitalize fw-medium text-nowrap">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($catgs as $catg)
+                                    <tr class="align-middle">
+                                        <td class="small text-black">
+                                            @if (!empty($catg['image']))
+                                                <img src="{{ $catg['image'] }}" 
+                                                alt="user-img" class="user-img rounded-circle shadow" style="width:45px; height:45px; object-fit:cover">
+                                            @else
+                                                <span>N/A</span>
+                                            @endif
+                                        </td>
+                                        <td class="small text-black">{{ $catg['title'] }}</td>
+                                        <td class="small text-black">{{ $catg['status'] }}</td>
+                                        <td class="small text-black">
+                                            <div class="dropdown custom-toggle">
+                                                <button type="button" class="btn border-0 bg-ngrey text-blue dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                </button>
+                                                <ul class="dropdown-menu py-0 rounded-3">
+                                                    <li><a class="dropdown-item d-flex align-items-center py-2"
+                                                        href="{{ 'categoriesDetail/' . $catg['_id'] }}"><img src="{{asset('img/details.png')}}" alt="details"
+                                                            class="icon me-2"><span>View Details</span></a></li>
+                                                    <li><a class="dropdown-item d-flex align-items-center py-2"
+                                                        href="#"><img src="{{asset('img/edit.png')}}" alt="delete"
+                                                            class="icon me-2"><span>Edit</span></a></li>
+                                                    <li><a class="dropdown-item d-flex align-items-center py-2"
+                                                            href="#"><img src="{{asset('img/delete.png')}}" alt="delete"
+                                                                class="icon me-2"><span>Delete</span></a></li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div class="alert alert-danger mt-3 mb-0" role="alert">
+                            Categories not found
+                        </div>
+                    @endif
                 </div>
             </section>
         </div>
