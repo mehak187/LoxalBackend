@@ -3,7 +3,7 @@
 
 <head>
     @include('admin.template.css')
-    <title>riders management</title>
+    <title>Users Management</title>
 </head>
 
 <body>
@@ -35,70 +35,78 @@
                                 </div>
                             </div>
                             <div class="d-flex mt-2 align-items-center justify-content-end">
-                                <p class="mb-0 me-3">Total Riders:</p>
+                                <p class="mb-0 me-3">Total Users:</p>
                                 <p class="mb-0 text-blue fw-medium">353</p>
                             </div>
                         </div>
                        
                     </div>
-                    <div class="table-responsive default-table table-header-shadow mt-3">
-                        <table class="table">
-                            <thead class="">
-                                <tr class="align-middle">
-                                    <th class="small text-capitalize fw-medium text-nowrap">
-                                        User Image
-                                    </th>
-                                    <th class="small text-capitalize fw-medium text-nowrap">
-                                        First Name
-                                    </th>
-                                    <th class="small text-capitalize fw-medium text-nowrap">
-                                        Last name
-                                    </th>
-                                  
-                                    <th class="small text-capitalize fw-medium text-nowrap">Phone number</th>
-                                    <th class="small text-capitalize fw-medium text-nowrap">Email</th>
-                                    <th class="small text-capitalize fw-medium text-nowrap">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="align-middle">
-                                    <td class="small text-black">
-                                        <img src="{{asset('img/profile.png')}}" alt="property-img"
-                                            class="user-img rounded-circle shadow" />
-                                    </td>
-                                    <td class="small text-black">DJ</td>
-                                    <td class="small text-black text-nowrap">Robinson</td>
-                                    <td class="small text-black">+21 91 999 999</td>
-                                    <td class="small text-black">client@gmail.com</td>
-                                    <td class="small text-black">
-                                        <div class="dropdown custom-toggle">
-                                            <button type="button" class="btn border-0 bg-ngrey text-blue dropdown-toggle"
-                                                data-bs-toggle="dropdown">
-                                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                                            </button>
-                                            <ul class="dropdown-menu py-0 rounded-3">
-                                                <li><a class="dropdown-item d-flex align-items-center py-2"
-                                                        href="{{ route('admin.userDetails') }}"><img src="{{asset('img/details.png')}}" alt="details"
-                                                            class="icon me-2"><span>View Details</span></a></li>
-                                                <li><a class="dropdown-item d-flex align-items-center py-2"
-                                                        href="#"><img src="{{asset('img/edit.png')}}" alt="edit"
-                                                            class="icon me-2"><span>Edit</span></a></li>
-                                                <li><a class="dropdown-item d-flex align-items-center py-2"
-                                                        href="#"><img src="{{asset('img/suspend.png')}}" alt="suspend"
-                                                            class="icon me-2"><span>Suspend Account</span></a></li>
-                                                <li><a class="dropdown-item d-flex align-items-center py-2"
-                                                        href="#"><img src="{{asset('img/dec;ine.png')}}" alt="close"
-                                                            class="icon me-2"><span>Close Account</span></a></li>
-                                                <li><a class="dropdown-item d-flex align-items-center py-2"
-                                                        href="#"><img src="{{asset('img/delete.png')}}" alt="delete"
-                                                            class="icon me-2"><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    @if (count($users) > 0)
+                        <div class="table-responsive default-table table-header-shadow mt-3">
+                            <table class="table">
+                                <thead class="">
+                                    <tr class="align-middle">
+                                        <th class="small text-capitalize fw-medium text-nowrap">
+                                            User Image
+                                        </th>
+                                        <th class="small text-capitalize fw-medium text-nowrap">
+                                            First Name
+                                        </th>
+                                        <th class="small text-capitalize fw-medium text-nowrap">
+                                            Last name
+                                        </th>
+                                    
+                                        <th class="small text-capitalize fw-medium text-nowrap">Phone number</th>
+                                        <th class="small text-capitalize fw-medium text-nowrap">Email</th>
+                                        <th class="small text-capitalize fw-medium text-nowrap">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                    <tr class="align-middle">
+                                        <td class="small text-black">
+                                            <img src="{{ $user['image'] ?? asset('img/dummy.jpeg') }}" 
+                                            alt="user-img" class="user-img rounded-circle shadow" style="width:45px; height:45px; object-fit:cover">
+                                        </td>
+                                        <td class="small text-black">{{ $user['firstName'] }}</td>
+                                        <td class="small text-black text-nowrap">{{ $user['lastName'] }}</td>
+                                        <td class="small text-black">{{ $user['mobileNumber'] }}</td>
+                                        <td class="small text-black">{{ $user['email'] }}</td>
+                                        <td class="small text-black">
+                                            <div class="dropdown custom-toggle">
+                                                <button type="button" class="btn border-0 bg-ngrey text-blue dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                </button>
+                                                <ul class="dropdown-menu py-0 rounded-3">
+                                                    <li><a class="dropdown-item d-flex align-items-center py-2"
+                                                            href="{{ route('admin.userDetails') }}"><img src="{{asset('img/details.png')}}" alt="details"
+                                                                class="icon me-2"><span>View Details</span></a></li>
+                                                    <li><a class="dropdown-item d-flex align-items-center py-2"
+                                                            href="#"><img src="{{asset('img/edit.png')}}" alt="edit"
+                                                                class="icon me-2"><span>Edit</span></a></li>
+                                                    <li><a class="dropdown-item d-flex align-items-center py-2"
+                                                            href="#"><img src="{{asset('img/suspend.png')}}" alt="suspend"
+                                                                class="icon me-2"><span>Suspend Account</span></a></li>
+                                                    <li><a class="dropdown-item d-flex align-items-center py-2"
+                                                            href="#"><img src="{{asset('img/dec;ine.png')}}" alt="close"
+                                                                class="icon me-2"><span>Close Account</span></a></li>
+                                                    <li><a class="dropdown-item d-flex align-items-center py-2"
+                                                            href="#"><img src="{{asset('img/delete.png')}}" alt="delete"
+                                                                class="icon me-2"><span>Delete</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div class="alert alert-danger mt-3 mb-0" role="alert">
+                            Users not found
+                        </div>
+                    @endif
                 </div>
             </section>
         </div>
