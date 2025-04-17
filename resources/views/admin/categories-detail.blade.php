@@ -23,34 +23,34 @@
                             alias, unde dolorum facilis reprehenderit enim.</p>
                         <div class="rounded-2 info-bg">
                             <div class="py-3 px-4 px-md-5 row justify-content-start">
-                                <div class="col-lg-9 col-xl-8">
+                                <div class="col-md-10 col-lg-9 col-xl-8">
                                     <div class="row">
-                                        <div class="my-4 col-6">
+                                        <div class="my-sm-4 col-sm-6">
                                             <div class="">
                                                 <div class="d-flex flex-column my-3">
-                                                    <h4 class="fs-5 fw-semibold mb-02text-blue me-sm-3">Category Name:
+                                                    <h4 class="fs-6 fw-semibold mb-2 text-blue me-sm-3">Category Name:
                                                     </h4>
                                                     <div class="d-flex align-items-center mt-1 mt-sm-0">
-                                                        <p class="mb-0 fs-5 fw-medium">{{ $catg['title'] }}</p>
+                                                        <p class="mb-0 fs-6 fw-medium">{{ $catg['title'] }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-column my-3">
-                                                    <h4 class="fs-5 fw-semibold  mb-2 text-blue me-sm-3">Status:</h4>
+                                                    <h4 class="fs-6 fw-semibold  mb-2 text-blue me-sm-3">Status:</h4>
                                                     <div class="d-flex align-items-center mt-1 mt-sm-0">
-                                                        <p class="mb-0 fs-5 fw-medium">{{ $catg['status'] }}</p>
+                                                        <p class="mb-0 fs-6 fw-medium">{{ $catg['status'] }}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="my-4 col-6">
+                                        <div class="my-sm-4 col-sm-6">
                                             <div class="">
-                                                <div class="d-flex flex-column my-3">
-                                                    <h4 class="fs-5 fw-semibold  mb-2 text-blue me-sm-3">Image:</h4>
+                                                <div class="d-flex flex-column my-sm-3">
+                                                    <h4 class="fs-6 fw-semibold  mb-2 text-blue me-sm-3">Image:</h4>
                                                     <div class="d-flex align-items-center mt-1 mt-sm-0">
                                                         @if (!empty($catg['image']))
                                                         <img src="{{ $catg['image'] }}" alt="user-img"
                                                             class="user-img w-100 rounded-3"
-                                                            style="object-fit:cover; max-width:400px; max-height:300px">
+                                                            style="object-fit:cover; max-width:400px; max-height:200px">
                                                         @else
                                                         <span className="text-danger">N/A</span>
                                                         @endif

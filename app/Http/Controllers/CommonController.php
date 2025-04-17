@@ -12,10 +12,10 @@ class CommonController extends Controller
     }
     
     public function login(Request $request) {
-        // $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required',
-        // ]);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
         // return response()->json([
         //     'email' => $request->email,
         //     'password' => $request->password,
